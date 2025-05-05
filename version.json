@@ -1,13 +1,13 @@
 {
   "version": "1.5.0",
-  "download_url": "https://github.com/TarzanCH-tech/PillSuite-Plus/archive/refs/tags/1.5.0.zip",
+  "download_url": "https://github.com/TarzanCH-tech/PillSuite-Plus/releases/download/1.5.0/PillSuite Plus.exe",
   "changes": [
     "New update system implementation",
     "Improved performance and stability",
     "Bug fixes and security updates",
     "UI/UX enhancements"
   ],
-  "size_mb": 0.5,
+  "size_mb": 0.086,
   "min_version": "1.0.0",
   "critical": false,
   "release_date": "2024-05-05",
