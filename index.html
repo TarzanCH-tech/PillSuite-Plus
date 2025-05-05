@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PillSuite Plus - Update Server</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8a2be2;
+            --secondary: #d33af1;
+            --dark: #111827;
+            --light: #f9fafb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f6f7ff 0%, #e9f0ff 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 30px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .header-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: #f9f9f9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        main {
+            margin-top: 60px;
+        }
+        
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+        
+        .hero-content {
+            flex: 1;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #4b5563;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .releases {
+            background-color: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 12px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 2px;
+        }
+        
+        .release-card {
+            background-color: #f9fafb;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .release-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .release-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .release-version {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .release-date {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .release-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 12px;
+        }
+        
+        .badge-latest {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .badge-critical {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .release-size {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        
+        .changes-list {
+            list-style-type: none;
+            margin-bottom: 20px;
+        }
+        
+        .changes-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 8px;
+        }
+        
+        .changes-list li::before {
+            content: '•';
+            position: absolute;
+            left: 10px;
+            color: var(--secondary);
+            font-size: 18px;
+        }
+        
+        .release-footer {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 16px;
+        }
+        
+        .download-btn {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .download-btn:hover {
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .integration {
+            margin-bottom: 60px;
+        }
+        
+        .code-block {
+            background-color: #1e293b;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+        }
+        
+        code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            color: #e2e8f0;
+            font-size: 14px;
+            line-height: 1.6;
+            display: block;
+        }
+        
+        .token-comment {
+            color: #94a3b8;
+            font-style: italic;
+        }
+        
+        .token-string {
+            color: #a5d6ff;
+        }
+        
+        .token-property {
+            color: #c792ea;
+        }
+        
+        .token-punctuation {
+            color: #9ca3af;
+        }
+        
+        .token-number {
+            color: #ff9d00;
+        }
+        
+        .token-boolean {
+            color: #7dd3fc;
+        }
+        
+        .faq {
+            background-color: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 60px;
+        }
+        
+        .faq-item {
+            margin-bottom: 24px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 24px;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .faq-question {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        
+        .faq-answer {
+            color: #4b5563;
+        }
+        
+        footer {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 40px 0;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            margin-bottom: 24px;
+        }
+        
+        .footer-logo img {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .hero {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .hero-content {
+                order: 2;
+            }
+            
+            .hero-image {
+                order: 1;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="https://placehold.co/60x60/8a2be2/ffffff.png?text=PSP" alt="PillSuite Plus Logo">
+                <h1>PillSuite Plus</h1>
+            </div>
+            <div class="header-buttons">
+                <a href="#releases" class="btn btn-primary">Latest Updates</a>
+                <a href="https://github.com/username/pillsuiteplus" class="btn btn-outline">View on GitHub</a>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h2>PillSuite Plus Update Server</h2>
+                <p>The official update repository for PillSuite Plus pharmacy management software. Stay current with the latest features, security patches, and performance improvements.</p>
+                <a href="#releases" class="download-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Get Latest Update
+                </a>
+            </div>
+            <div class="hero-image">
+                <img src="https://placehold.co/600x400/8a2be2/ffffff.png?text=PillSuite+Plus" alt="PillSuite Plus Screenshot">
+            </div>
+        </section>
+        
+        <section id="releases" class="releases">
+            <h2 class="section-title">Latest Releases</h2>
+            
+            <div class="release-card">
+                <div class="release-header">
+                    <div>
+                        <span class="release-version">v1.1.0</span>
+                        <span class="release-badge badge-latest">Latest</span>
+                    </div>
+                    <span class="release-date">Released on November 15, 2023</span>
+                </div>
+                <div class="release-size">Download size: 25.4 MB</div>
+                <ul class="changes-list">
+                    <li>Added automatic update functionality</li>
+                    <li>Improved theme encryption system</li>
+                    <li>Fixed bugs in medication inventory module</li>
+                    <li>Enhanced user interface performance</li>
+                </ul>
+                <div class="release-footer">
+                    <a href="https://github.com/username/pillsuiteplus/releases/download/v1.1.0/PillSuitePlus_1.1.0.zip" class="download-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download Update
+                    </a>
+                </div>
+            </div>
+            
+            <div class="release-card">
+                <div class="release-header">
+                    <div>
+                        <span class="release-version">v1.0.1</span>
+                    </div>
+                    <span class="release-date">Released on October 10, 2023</span>
+                </div>
+                <div class="release-size">Download size: 24.8 MB</div>
+                <ul class="changes-list">
+                    <li>Security improvements for user authentication</li>
+                    <li>Fixed critical issue with prescription processing</li>
+                    <li>Improved database performance</li>
+                    <li>UI/UX enhancements for better usability</li>
+                </ul>
+                <div class="release-footer">
+                    <a href="https://github.com/username/pillsuiteplus/releases/download/v1.0.1/PillSuitePlus_1.0.1.zip" class="download-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download Update
+                    </a>
+                </div>
+            </div>
+            
+            <div class="release-card">
+                <div class="release-header">
+                    <div>
+                        <span class="release-version">v1.0.0</span>
+                        <span class="release-badge badge-critical">Initial Release</span>
+                    </div>
+                    <span class="release-date">Released on September 1, 2023</span>
+                </div>
+                <div class="release-size">Download size: 24.5 MB</div>
+                <ul class="changes-list">
+                    <li>Initial release of PillSuite Plus</li>
+                    <li>Complete pharmacy management system</li>
+                    <li>Prescription tracking and processing</li>
+                    <li>Inventory management and reporting</li>
+                    <li>User management with role-based access</li>
+                </ul>
+                <div class="release-footer">
+                    <a href="https://github.com/username/pillsuiteplus/releases/download/v1.0.0/PillSuitePlus_1.0.0.zip" class="download-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download Update
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="integration">
+            <h2 class="section-title">Update Integration</h2>
+            <p style="margin-bottom: 24px;">PillSuite Plus automatically checks for updates. Here's the format of our version.json file that drives the update process:</p>
+            
+            <div class="code-block">
+<code><span class="token-punctuation">{</span>
+  <span class="token-property">"version"</span><span class="token-punctuation">:</span> <span class="token-string">"1.1.0"</span><span class="token-punctuation">,</span>
+  <span class="token-property">"download_url"</span><span class="token-punctuation">:</span> <span class="token-string">"https://github.com/username/pillsuiteplus/releases/download/v1.1.0/PillSuitePlus_1.1.0.zip"</span><span class="token-punctuation">,</span>
+  <span class="token-property">"changes"</span><span class="token-punctuation">:</span> <span class="token-punctuation">[</span>
+    <span class="token-string">"Added automatic update functionality"</span><span class="token-punctuation">,</span>
+    <span class="token-string">"Improved theme encryption system"</span><span class="token-punctuation">,</span>
+    <span class="token-string">"Fixed bugs in medication inventory module"</span><span class="token-punctuation">,</span>
+    <span class="token-string">"Enhanced user interface performance"</span>
+  <span class="token-punctuation">]</span><span class="token-punctuation">,</span>
+  <span class="token-property">"size_mb"</span><span class="token-punctuation">:</span> <span class="token-number">25.4</span><span class="token-punctuation">,</span>
+  <span class="token-property">"min_version"</span><span class="token-punctuation">:</span> <span class="token-string">"1.0.0"</span><span class="token-punctuation">,</span>
+  <span class="token-property">"critical"</span><span class="token-punctuation">:</span> <span class="token-boolean">false</span><span class="token-punctuation">,</span>
+  <span class="token-property">"release_date"</span><span class="token-punctuation">:</span> <span class="token-string">"2023-11-15"</span><span class="token-punctuation">,</span>
+  <span class="token-property">"checksum"</span><span class="token-punctuation">:</span> <span class="token-string">"a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6"</span>
+<span class="token-punctuation">}</span></code>
+            </div>
+        </section>
+        
+        <section class="faq">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do automatic updates work?</div>
+                <div class="faq-answer">
+                    PillSuite Plus checks for updates when the application starts (if enabled in settings) and periodically while running. When an update is found, you'll be notified and can choose to download and install it immediately or later. The update process preserves all your important files including your database, configurations, and custom themes.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What happens if an update fails?</div>
+                <div class="faq-answer">
+                    The update system includes backup and restore functionality. If an update fails, the application will automatically restore from the backup created before the update process began, ensuring your system remains functional.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can I manually update without using the built-in updater?</div>
+                <div class="faq-answer">
+                    Yes, you can manually download update packages from this repository and install them. However, we recommend using the built-in updater as it handles file backups and proper installation automatically.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I report issues with an update?</div>
+                <div class="faq-answer">
+                    If you encounter any issues with an update, please report them on our <a href="https://github.com/username/pillsuiteplus/issues" style="color: var(--primary);">GitHub Issues page</a>. Include details about the version you're updating from, the update version, and any error messages you received.
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <img src="https://placehold.co/48x48/8a2be2/ffffff.png?text=PSP" alt="PillSuite Plus Logo">
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/username/pillsuiteplus">GitHub</a>
+                <a href="https://github.com/username/pillsuiteplus/issues">Report Issues</a>
+                <a href="https://github.com/username/pillsuiteplus/releases">All Releases</a>
+                <a href="mailto:support@pillsuiteplus.com">Contact Support</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 PillSuite Plus. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
