@@ -1,15 +1,26 @@
 {
   "version": "1.5.0",
-  "download_url": "https://github.com/TarzanCH-tech/PillSuite-Plus/releases/download/1.5.0/PillSuite%20Plus.exe",
-  "changes": [
-    "New update system implementation",
-    "Improved performance and stability",
-    "Bug fixes and security updates",
-    "UI/UX enhancements"
-  ],
-  "size_mb": 0.086,
-  "min_version": "1.0.0",
-  "critical": false,
-  "release_date": "2024-05-05",
-  "checksum": "05f0e9c"
+  "release_date": "2024-03-19",
+  "download_url": "https://github.com/TarzanCH-tech/PillSuite-Plus/releases/download/1.5.0/PillSuitePlus.v1.5.0.rar",
+  "release_notes": {
+    "new_features": [
+      "Calendar View: View sales invoices by date and toggle between calendar and list views",
+      "Purchase Return Tab: Allows partial or full returns with real-time returnable quantity validation",
+      "Notification Panel: Critical updates are now saved to both the database and local JSON"
+    ],
+    "enhancements": [
+      "Forgot Password Revamp: OTP verification with live timer, resend option, and email support",
+      "User Profile UI: Drag-and-drop profile picture with hover effects and live preview",
+      "Default Payment Method: Automatically applied from settings when adding purchase records"
+    ],
+    "bug_fixes": [
+      "Fixed: Issue with fetching batch details of deleted items",
+      "Fixed: Expired item count mismatch on the dashboard",
+      "Fixed: Scrollbar not appearing in Sales List view mode"
+    ]
+  },
+  "min_required_version": "1.4.0",
+  "file_size": "148MB",
+  "support_contact": "tarzanch009@gmail.com",
+  "created_by": "NightStalker"
 }
